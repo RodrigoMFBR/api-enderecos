@@ -1,10 +1,11 @@
 package com.rodrigomf.apienderecos.service;
 
-import com.rodrigomf.apienderecos.entity.Continente;
+import com.rodrigomf.apienderecos.model.Continente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.rodrigomf.apienderecos.respository.ContinenteRepository;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContinenteService {
@@ -25,11 +26,22 @@ public class ContinenteService {
     }
 
     public List<Continente> getAll(){
-        return continenteRepository.findAll();
+        List<Continente> listContinente = continenteRepository.findAll();
+
+        return listContinente;
     }
 
-    public void removeContinente(Continente continente){
+    public String removeContinente(Continente continente){
+
         continenteRepository.delete(continente);
+        Optional<Continente> continenteOpt = continenteRepository.findById(continente.getId());
+
+        if (continenteOpt.isPresent()) {
+            return "Continente " + continente + " não excluído.";
+        } else {
+            return "Exclusão realizada com sucesso";
+        }
     }
+
 
 }
