@@ -1,5 +1,6 @@
 package com.rodrigomf.apienderecos.controller;
 
+import com.rodrigomf.apienderecos.dto.ContinenteDto;
 import com.rodrigomf.apienderecos.service.ContinenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,9 @@ public class ContinenteController {
     @Autowired
     ContinenteService continenteService;
 
-    @PostMapping
-    public Continente addContinente(@RequestBody Continente continente){
-        return continenteService.addContinente(continente);
+    @RequestMapping(method = RequestMethod.GET, path = "/add/{sgl}/{nome}")
+    public ContinenteDto addContinente(@PathVariable String sgl, @PathVariable String nome){
+        return continenteService.addContinente(sgl, nome);
     }
 
     @PostMapping("/{continente}")
@@ -31,7 +32,7 @@ public class ContinenteController {
 
 
     @GetMapping("/")
-    public List<Continente> getAll() {
+    public List<ContinenteDto> getAll() {
         return continenteService.getAll();
     }
 

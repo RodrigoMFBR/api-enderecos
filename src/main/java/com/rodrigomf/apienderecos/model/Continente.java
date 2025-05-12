@@ -25,6 +25,18 @@ public class Continente{
     @Column(name="nome", length = 200, nullable=false)
     private String nome;
 
+    @Column(name="usu_inclusao", length = 45, nullable=false)
+    private String usuInclusao;
+
+    @Column(name="usu_alteracao", length = 45, nullable=true)
+    private String usuAlteracao;
+
+    @Column(name="dt_hr_inclusao", nullable=false)
+    private Date dtHrInclusao;
+
+    @Column(name="dt_hr_alteracao", nullable=true)
+    private Date dtHrAlteracao;
+
     public Long getId() {
         return id;
     }
@@ -48,18 +60,6 @@ public class Continente{
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    @Column(name="usu_inclusao", length = 45, nullable=false)
-    private String usuInclusao;
-
-    @Column(name="usu_alteracao", length = 45, nullable=true)
-    private String usuAlteracao;
-
-    @Column(name="dt_hr_inclusao", nullable=false)
-    private Date dtHrInclusao;
-
-    @Column(name="dt_hr_alteracao", nullable=true)
-    private Date dtHrAlteracao;
 
     public String getUsuInclusao() {
         return usuInclusao;
